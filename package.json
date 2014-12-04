@@ -1,0 +1,22 @@
+{
+  "name": "ajson",
+  "version": "0.0.0",
+  "description": "JSON compression by aliasing (tree to dag)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fraczak/ajson.git"
+  },
+  "keywords": [
+    "json",
+    "tree-to-dag"
+  ],
+  "author": "Wojciech Fraczak",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/fraczak/ajson/issues"
+  }
+}
