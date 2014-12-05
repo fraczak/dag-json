@@ -4,7 +4,8 @@
   "description": "JSON compression by aliasing (tree to dag)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "coffee -c index.coffee",
+    "test": "coffee test.coffee"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "license": "GPL",
   "bugs": {
     "url": "https://github.com/fraczak/ajson/issues"
+  },
+  "dependencies": {
+    "lodash": "~2.4.1"
   }
 }
