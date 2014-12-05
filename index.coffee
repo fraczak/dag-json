@@ -46,4 +46,7 @@ fromAJson = (aJson,$='$') ->
             r[k] = aJson[k] = myMap v
     result
 
-module.exports = {toAJson, fromAJson}
+
+module.exports =
+    pack: toAJson
+    unpack: fromAJson

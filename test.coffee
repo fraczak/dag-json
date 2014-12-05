@@ -1,4 +1,4 @@
-{toAJson, fromAJson} = require "./index"
+{pack, unpack} = require "./index"
 
 a = {a:[1,2],b:[1,2],c:[1,2]}
 b = {a:a,b:a,c:a}
@@ -9,16 +9,20 @@ f = [e,e,e,e]
 g = [f,f,f,f]
 
 bigObject = [g,g,g,f,f,g]
-str = JSON.stringify bigObject
-aJson = toAJson bigObject
 
-console.log str3 = JSON.stringify aJson
+strOrigin = JSON.stringify bigObject
 
-obj = fromAJson aJson
-str2 = JSON.stringify obj
-if (str is str2)
-    console.log "SUCCEEDED [#{str3.length}/#{str.length}]"
+packed = pack bigObject
+
+console.log strPacked = JSON.stringify packed
+
+unpacked = unpack packed
+strUnpacked = JSON.stringify unpacked
+if (strOrigin is strUnpacked)
+    console.log "SUCCEEDED [#{strPacked.length}/#{strOrigin.length}]"
 else
-    console.log "FAILED"
-
+    console.log "FAILED ['origin' and 'after' strings should be equal]"
+    console.log " origin json: #{strOrigin}"
+    console.log ".. and after: #{strUnpacked}"
+    throw "    'origin' and 'after' strings should be equal"
 
