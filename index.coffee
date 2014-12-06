@@ -46,7 +46,26 @@ fromAJson = (aJson,$='$') ->
             r[k] = aJson[k] = myMap v
     result
 
+unalias = (obj, $="$") ->
+    return obj unless obj[$]
+    myMap = (reMap obj[$]) $
+    res = {}
+    mem = {}
+    sub = (o) ->
+        console.log o, mem
+        if (ld.isPlainObject o) or (ld.isArray o)
+            ld.transform o, (r,v,k) ->
+                r[k] = sub v
+        else
+            aux = myMap o
+            return aux if aux is o
+            return mem[o] if mem[o]
+            mem[o] = sub myMap o
+    for l,e of obj when l isnt $
+        res[l] = sub e
+    res
 
 module.exports =
     pack: toAJson
     unpack: fromAJson
+    unalias: unalias

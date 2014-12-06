@@ -36,3 +36,17 @@ Compress a json using tree to dag transformation. For example:
         # true
 
 Thus, common subtrees are extracted and reused.
+
+Also, if you want just aliasing, you can do something like that:
+
+        {pack, unpack, unalias} = require "./index"
+        a =
+            "$":
+                "$a": a: "$b", b: 12
+                "$b": [1,2,3]
+            hey: ["$a", "$b", "$a", 12]
+            ho: a: "$a", b: "$a"
+
+        console.log JSON.stringify unalias a
+        # {"hey":[{"a":[1,2,3],"b":12},[1,2,3],{"a":[1,2,3],"b":12},12],
+        #  "ho":{"a":{"a":[1,2,3],"b":12},"b":{"a":[1,2,3],"b":12}}}
