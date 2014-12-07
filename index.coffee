@@ -52,7 +52,6 @@ unalias = (obj, $="$") ->
     res = {}
     mem = {}
     sub = (o) ->
-        console.log o, mem
         if (ld.isPlainObject o) or (ld.isArray o)
             ld.transform o, (r,v,k) ->
                 r[k] = sub v
@@ -60,6 +59,7 @@ unalias = (obj, $="$") ->
             aux = myMap o
             return aux if aux is o
             return mem[o] if mem[o]
+            mem[o] = "ERROR: circular definition for #{o}"
             mem[o] = sub myMap o
     for l,e of obj when l isnt $
         res[l] = sub e

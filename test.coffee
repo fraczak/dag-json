@@ -35,3 +35,11 @@ a =
     ho: a: "$a", b: "$a"
 
 console.log JSON.stringify unalias a
+b =
+    "$":
+        "$a": a: "$b", b: 12
+        "$b": [1,2, "$a"]
+    hey: ["$a", "$b", "$a", 12]
+    ho: a: "$a", b: "$a"
+
+console.log JSON.stringify unalias b
