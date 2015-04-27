@@ -1,10 +1,10 @@
 {
   "name": "ajson",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "JSON compression by aliasing (tree to dag)",
   "main": "index.js",
   "scripts": {
-    "install": "coffee -c index.coffee",
+    "prepublish": "coffee -c index.coffee",
     "test": "coffee test.coffee"
   },
   "repository": {
@@ -21,6 +21,7 @@
     "url": "https://github.com/fraczak/ajson/issues"
   },
   "dependencies": {
+    "coffee-script": "^1.9.2",
     "lodash": "~2.4.1"
   }
 }
