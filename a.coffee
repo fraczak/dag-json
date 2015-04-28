@@ -1,4 +1,4 @@
-ajson = require "ajson"
+ajson = require "dag-json"
 
 #lets generate a bigger json
 big = (f=(x)->if(x)then(ff=f(x-1);{a:ff,b:ff})else[1,2]) 16

@@ -1,6 +1,6 @@
 {
   "name": "dag-json",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JSON compression by aliasing (tree to dag)",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fraczak/ajson.git"
+    "url": "https://github.com/fraczak/dag-json.git"
   },
   "keywords": [
     "json",
@@ -20,7 +20,7 @@
   "author": "Wojciech Fraczak",
   "license": "GPL",
   "bugs": {
-    "url": "https://github.com/fraczak/ajson/issues"
+    "url": "https://github.com/fraczak/dag-json/issues"
   },
   "dependencies": {
     "lodash": "~2.4.1"

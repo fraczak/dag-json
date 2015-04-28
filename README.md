@@ -1,9 +1,9 @@
-ajson
-=====
+dag-json
+========
 
 Compress a json using tree to dag transformation. For example:
 
-        ajson = require "ajson"
+        ajson = require "dag-json"
 
         #lets generate a bigger json
         big = (f=(x)->if(x)then(ff=f(x-1);{a:ff,b:ff})else[1,2]) 16
