@@ -1,4 +1,8 @@
-ld = require "lodash"
+ld = require "underscore"
+
+isPlainObject = (x) ->
+  return false if ld.isArray(x) or ld.isNumber(x) or ld.isString(x)
+  true
 
 reMap = (map) -> ($) -> (x) ->
     if (ld.isString x) and (0 is x.indexOf $)
@@ -11,7 +15,7 @@ toAJson = (root, $="$") ->
         if (ld.isArray o)
             oValue = (_getOrAdd e for e in o)
             oLabel = "#{$}[#{oValue.join ','}]"
-        else if (ld.isPlainObject o)
+        else if (isPlainObject o)
             oValue = {}
             aux = []
             for l,e of o
@@ -31,19 +35,23 @@ toAJson = (root, $="$") ->
         count++
     myMap = (reMap map) $
     for l,e of dict
-        res[map[l]] = ld.transform e, (r, val, key) ->
+        res[map[l]] = ld.reduce e, (r, val, key) ->
             r[key] = myMap val
+            r
+        , if ld.isArray(e) then [] else {}
     if root is myMap root
         return root
     res
 
 fromAJson = (aJson,$='$') ->
     result = ""
-    return aJson unless ld.isPlainObject aJson
+    return aJson unless isPlainObject aJson
     myMap = (reMap aJson) $
     for l,e of aJson
-        result = aJson[l] = ld.transform e, (r,v,k) ->
+        result = aJson[l] = ld.reduce e, (r,v,k) ->
             r[k] = aJson[k] = myMap v
+            r
+        , if ld.isArray(e) then [] else {}
     result
 
 unalias = (obj, $="$") ->
@@ -52,9 +60,16 @@ unalias = (obj, $="$") ->
     res = {}
     mem = {}
     sub = (o) ->
-        if (ld.isPlainObject o) or (ld.isArray o)
-            ld.transform o, (r,v,k) ->
+        if (ld.isArray o)
+            o.reduce (r,v,k) ->
                 r[k] = sub v
+                r
+            , []
+        else if isPlainObject o
+            ld.reduce o, (r,v,k) ->
+                r[k] = sub v
+                r
+            , {}
         else
             aux = myMap o
             return aux if aux is o
