@@ -1,4 +1,4 @@
-{pack, unpack, unalias} = require "./index"
+{pack, unpack, unalias} = require "./index.coffee"
 
 a = {a:[1,2],b:[1,2],c:[1,2]}
 b = {a:a,b:a,c:a}
@@ -26,6 +26,7 @@ else
     console.log ".. and after: #{strUnpacked}"
     throw "    'origin' and 'after' strings should be equal"
 
+console.log pack {a:{a:1,b:2}, b:{b:2,a:1}}
 
 a =
     "$":
@@ -42,4 +43,5 @@ b =
     hey: ["$a", "$b", "$a", 12]
     ho: a: "$a", b: "$a"
 
-console.log JSON.stringify unalias b
+
+

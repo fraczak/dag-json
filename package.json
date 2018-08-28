@@ -1,6 +1,6 @@
 {
   "name": "dag-json",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "JSON compression by aliasing (tree to dag)",
   "main": "index.js",
   "scripts": {
@@ -22,10 +22,8 @@
   "bugs": {
     "url": "https://github.com/fraczak/dag-json/issues"
   },
-  "dependencies": {
-    "underscore": "^1.8.3"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "coffee-script": "^1.10.0"
+    "coffeescript": "^2.3.1"
   }
 }
